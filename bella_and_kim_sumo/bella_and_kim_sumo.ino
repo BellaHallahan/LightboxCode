@@ -1,8 +1,8 @@
 //final code
-#define M1 5
-#define M2 6
-#define M3 7
-#define M4 8
+#define MR1 5
+#define MR2 6
+#define ML1 7
+#define ML2 8
 
 int x;
 
@@ -18,23 +18,31 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(M1, HIGH);
-  digitalWrite(M2, LOW);
+  digitalWrite(MR1, HIGH);
+  digitalWrite(MR2, LOW);
 
-  digitalWrite(M3, LOW);
-  digitalWrite(M4, HIGH);
-
-  delay(2000);
-
-  digitalWrite(M1, LOW);
-  digitalWrite(M2, HIGH);
-
-  digitalWrite(M3, HIGH);
-  digitalWrite(M4, LOW);
+  digitalWrite(ML1, LOW);
+  digitalWrite(ML2, HIGH);
 
   delay(2000);
 
-  x = analogRead(3);
-  Serial.println(x);
-  delay(1000);
-}
+  digitalWrite(MR1, LOW);
+  digitalWrite(MR2, HIGH);
+
+  digitalWrite(ML1, HIGH);
+  digitalWrite(ML2, LOW);
+
+  delay(2000);
+
+  x = digitalRead(3);
+  delay(500);
+
+  if (x == 0) {
+    Serial.print("White");
+
+  } else {
+    Serial.print("Black");
+  }
+  Serial.println();
+
+} 
