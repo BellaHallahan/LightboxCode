@@ -7,9 +7,12 @@
 #define BKWRD 1
 #define RGHT 2
 #define LEFT 3
+#define WHITE 0
+#define BLACK 1
 
+int x;
+int y;
 
-//k
 void drive_robot(int dir) {
   if (dir == FWRD) {
     digitalWrite(MR1, HIGH);
@@ -42,16 +45,31 @@ void setup() {
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
+  pinMode(3, INPUT);
   Serial.begin(9600);
 
 }
 
 void loop() {
+  int rightSensor = digitalRead(3);
+  int leftSensor = digitalRead(2);
+  
+  if(rightSensor == WHITE){
+    drive_robot(BKWRD);
+    delay(1000);
+    turn_robot(RGHT);
+    delay(1000);
+    Serial.println("white");
+  }else if (rightSensor == BLACK){
+    Serial.println("black");
+  }
+  
+  
   drive_robot(FWRD);
-  delay(1000);
-  turn_robot(RGHT);
-  delay(1000);
-  drive_robot(BKWRD);
-  delay(1000);
+  //delay(1000);
+ // turn_robot(RGHT);
+  //delay(1000);
+  //drive_robot(BKWRD);
+  delay(30);
 
 }
