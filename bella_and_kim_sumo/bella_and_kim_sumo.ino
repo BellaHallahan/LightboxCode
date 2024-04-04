@@ -5,24 +5,37 @@
 
 #define FWRD 0
 #define BKWRD 1
+#define RGHT 2
+#define LEFT 3
 
-int x;
 
 //k
-void drive_robot(int dir){
-  if (dir == FWRD){
+void drive_robot(int dir) {
+  if (dir == FWRD) {
     digitalWrite(MR1, HIGH);
     digitalWrite(MR2, LOW);
     digitalWrite(ML1, HIGH);
     digitalWrite(ML2, LOW);
-  }else{
+  } else {
     digitalWrite(MR1, LOW);
     digitalWrite(MR2, HIGH);
     digitalWrite(ML1, LOW);
     digitalWrite(ML2, HIGH);
   }
 }
-
+void turn_robot(int dir) {
+  if (dir == RGHT) {
+    digitalWrite(MR1, LOW);
+    digitalWrite(MR2, HIGH);
+    digitalWrite(ML1, HIGH);
+    digitalWrite(ML2, LOW);
+  } else {
+    digitalWrite(MR1, HIGH);
+    digitalWrite(MR2, LOW);
+    digitalWrite(ML1, LOW);
+    digitalWrite(ML2, HIGH);
+  }
+}
 void setup() {
   // put your setup code here, to run once:
   pinMode(5, OUTPUT);
@@ -34,9 +47,11 @@ void setup() {
 }
 
 void loop() {
-  drive_robot(BKWRD);
-  
-  x = analogRead(3);
-  Serial.println(x);
+  drive_robot(FWRD);
   delay(1000);
+  turn_robot(RGHT);
+  delay(1000);
+  drive_robot(BKWRD);
+  delay(1000);
+
 }
