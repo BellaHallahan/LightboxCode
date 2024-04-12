@@ -46,6 +46,7 @@ void setup() {
   pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(3, INPUT);
+  pinMode(2, INPUT);
   Serial.begin(9600);
 
 }
@@ -55,7 +56,7 @@ void loop() {
   int leftSensor = digitalRead(2);
   
   if(rightSensor == WHITE){
-    drive_robot(BKWRD);
+    drive_robot(BKWRD); 
     delay(1000);
     turn_robot(RGHT);
     delay(1000);
